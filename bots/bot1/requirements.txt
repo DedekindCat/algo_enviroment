@@ -1,0 +1,10 @@
+ccxt
+polars
+websocket-client
+python-dotenv
+numpy
+lightgbm
+scikit-learn
+joblib
+sqlalchemy
+psycopg2-binary

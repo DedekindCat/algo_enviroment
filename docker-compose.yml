@@ -1,0 +1,46 @@
+version: '3'
+services:
+  bot1:
+    build: 
+      context: ./bots/bot1
+    restart: always
+    volumes:
+      - ./logs/bot1:/app/logs
+      - ./models/bot1:/app/models
+    environment:
+      - EXCHANGE_API_KEY=${EXCHANGE_API_KEY}
+      - EXCHANGE_SECRET=${EXCHANGE_SECRET}
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+    depends_on:
+      - db
+
+  data-collector:
+    build: 
+      context: ./data_collector
+    restart: on-failure
+    volumes:
+      - ./logs/data_collector:/app/logs/data_collector
+      - ./logs/test:/app/logs/test
+      - ./progress/data_collector:/app/progress
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data: 
