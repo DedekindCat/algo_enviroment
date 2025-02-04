@@ -1,16 +1,14 @@
 # algo_enviroment
-## Purpose
-This is a template for cryptocurrency CEX-based machine learning trading.   I hope it will be helpful for beginners in crypto trading who are unsure how to set up their environment.
-
+## 目的
 これは仮想通貨のCEX型機械学習トレードのテンプレートです。
 仮想通貨トレードの初心者で、環境構築方法が分からないという方の参考になれば幸いです。
 
-## Note
+## 注意
 現在のバージョンは未完成の機能を多く含みます
 今後、バージョンアップを行い、機能を追加してい
 く予定です。
 
-## Strategy 
+## 方針
 
 MLでn分後の価格を予測し、その予測価格に対してポジションを取る
 
@@ -22,8 +20,10 @@ DBはRDSを使用
 
 モデルの学習にはGoogle ColabのGPUを使用
 
+n分ローソク足、n分テクニカル、n分板情報を使用
 
-## File Structure
+
+## ファイル構造
 <pre>
 /
 bots
